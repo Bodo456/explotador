@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     position: 'absolute',
-    top: 130,
+    top: 150,
   },
   title: {
     color: 'white',
