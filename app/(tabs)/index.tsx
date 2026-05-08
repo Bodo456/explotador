@@ -12,7 +12,7 @@ export default function Index() {
       <View style={styles.buttonContainer}>
         <Text style={styles.buttonTitle}>Do you already have an account?</Text>
         <TextInput style={styles.input} placeholder="username or email" placeholderTextColor= "#999"
-        textContentType="username" spellCheck={false}>
+        textContentType="username">
         </TextInput>
         <TextInput style={styles.input} placeholder="password" placeholderTextColor= "#999"
         textContentType="password" secureTextEntry={true}>
@@ -24,6 +24,10 @@ export default function Index() {
         >
           <Text style={styles.buttonText}>Login</Text>
         </Pressable>
+
+        <View style={styles.divider}></View>
+
+        <Text style={styles.buttonTitle}>No account yet? Click register.</Text>
         <Pressable style={({ pressed }) => [
           styles.button,
           pressed && styles.buttonPressed,
@@ -46,7 +50,7 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     position: 'absolute',
-    top: 130,
+    top: 120,
   },
   title: {
     color: 'white',
@@ -83,7 +87,7 @@ const styles = StyleSheet.create({
   },
   buttonTitle : {
     color: 'white',
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 600,
   },
   input : {
@@ -96,5 +100,12 @@ const styles = StyleSheet.create({
     fontWeight: 600,
     fontSize: 16,
     paddingHorizontal: 10,
-  }
+  },
+  divider: {
+    height: 1,
+    backgroundColor: '#666',
+    width: '80%',
+    marginVertical: 10,
+    },
+
 });
