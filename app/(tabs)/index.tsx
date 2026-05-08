@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default function Index() {
   return (
@@ -10,6 +10,13 @@ export default function Index() {
       </View>
       {/* login-/register-field */}
       <View style={styles.buttonContainer}>
+        <Text style={styles.buttonTitle}>Do you already have an account?</Text>
+        <TextInput style={styles.input} placeholder="username or email" placeholderTextColor= "#999"
+        textContentType="username" spellCheck={false}>
+        </TextInput>
+        <TextInput style={styles.input} placeholder="password" placeholderTextColor= "#999"
+        textContentType="password" secureTextEntry={true}>
+        </TextInput>
         <Pressable style={({ pressed }) => [
           styles.button,
           pressed && styles.buttonPressed,
@@ -39,11 +46,11 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     position: 'absolute',
-    top: 150,
+    top: 130,
   },
   title: {
     color: 'white',
-    fontSize: 50,
+    fontSize: 65,
     fontWeight: 'bold',
   },
   buttonContainer: {
@@ -61,7 +68,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 40,
     borderRadius: 10,
-    width: '70%',
+    width: '85%',
     alignItems: 'center',
     borderWidth: 1,
     borderColor: '#888',
@@ -74,4 +81,20 @@ const styles = StyleSheet.create({
   buttonPressed : {
     opacity: 0.7,
   },
+  buttonTitle : {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 600,
+  },
+  input : {
+    backgroundColor: 'white',
+    color: 'black',
+    borderWidth: 1,
+    borderRadius: 10,
+    width: '85%',
+    borderColor: '#888',
+    fontWeight: 600,
+    fontSize: 16,
+    paddingHorizontal: 10,
+  }
 });
