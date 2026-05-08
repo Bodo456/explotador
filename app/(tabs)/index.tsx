@@ -10,10 +10,18 @@ export default function Index() {
       </View>
       {/* login-/register-field */}
       <View style={styles.buttonContainer}>
-        <Pressable style={styles.button}>
+        <Pressable style={({ pressed }) => [
+          styles.button,
+          pressed && styles.buttonPressed,
+        ]}
+        >
           <Text style={styles.buttonText}>Login</Text>
         </Pressable>
-        <Pressable style={styles.button}>
+        <Pressable style={({ pressed }) => [
+          styles.button,
+          pressed && styles.buttonPressed,
+        ]}
+        >
           <Text style={styles.buttonText}>Register</Text>
         </Pressable>
       </View>
@@ -62,5 +70,8 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
     fontWeight: 600,
-  }
+  },
+  buttonPressed : {
+    opacity: 0.7,
+  },
 });
