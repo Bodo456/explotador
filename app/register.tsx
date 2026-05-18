@@ -5,9 +5,12 @@ export default function Register() {
 
     {/* password-state */}
     const [password, setPassword] = useState('');
-
     {/* password check, has to have a lenght of 5 and at least 1 digit */}
     const isPasswordValid = password.length >= 5 && /\d/.test(password);
+
+    {/* email-state and email-check */}
+    const [email, setEmail] = useState('');
+    const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
     return (
         
@@ -20,8 +23,18 @@ export default function Register() {
                     textContentType="username">
                 </TextInput>
                 <TextInput style={styles.input} placeholder="email" placeholderTextColor= "#999"
+                    value={email}
+                    onChangeText={setEmail}
+                    keyboardType="email-address"
+                    autoCapitalize="none"
                 >
                 </TextInput>
+                {/* error-text for email-input */}
+                {email.length && !isEmailValid && (
+                    <Text style={styles.errorText}>
+                        Please enter a valid email address.
+                    </Text>
+                )}
                 <View style={styles.divider}></View>
                 {/* password-part */}
                 {password.length > 0 && !isPasswordValid && (
