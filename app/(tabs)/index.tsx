@@ -1,3 +1,4 @@
+import { router } from 'expo-router';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default function Index() {
@@ -26,12 +27,12 @@ export default function Index() {
         </Pressable>
 
         <View style={styles.divider}></View>
-
+        {/* opens register-page when register-button is clicked */}
         <Text style={styles.buttonTitle}>No account yet? Click register.</Text>
         <Pressable style={({ pressed }) => [
           styles.button,
           pressed && styles.buttonPressed,
-        ]}
+        ]} onPress={() => router.push('/register')} 
         >
           <Text style={styles.buttonText}>Register</Text>
         </Pressable>
