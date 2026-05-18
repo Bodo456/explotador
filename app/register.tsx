@@ -3,14 +3,18 @@ import { KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, TextInput,
 
 export default function Register() {
 
-    {/* password-state */}
+    // password-state
     const [password, setPassword] = useState('');
-    {/* password check, has to have a lenght of 5 and at least 1 digit */}
+    // password check, has to have a lenght of 5 and at least 1 digit 
     const isPasswordValid = password.length >= 5 && /\d/.test(password);
 
-    {/* email-state and email-check */}
+    // email-state and email-check 
     const [email, setEmail] = useState('');
     const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    // username check for valid input
+    const [username, setUsername] = useState('');
+    const isUsernameValid = /^[a-zA-Z0-9._]{3,30}$/.test(username);
 
     return (
         
@@ -19,9 +23,20 @@ export default function Register() {
             { /* username-section / email-section */}
             <View style={styles.buttonContainer}>
                 <Text style={styles.buttonTitle}>Create an account</Text>
+
                 <TextInput style={styles.input} placeholder="username" placeholderTextColor= "#999"
-                    textContentType="username">
+                    textContentType="username"
+                    value={username}
+                    onChangeText={setUsername}    
+                >
                 </TextInput>
+                {/* error-message for invalid username */}
+                {username.length > 0 && !isUsernameValid && (
+                    <Text style={styles.errorText}>
+                        Username must be 3–30 characters and can only contain letters, numbers, periods(.), and underscores(_).
+                    </Text>
+                )}
+
                 <TextInput style={styles.input} placeholder="email" placeholderTextColor= "#999"
                     value={email}
                     onChangeText={setEmail}
@@ -29,8 +44,9 @@ export default function Register() {
                     autoCapitalize="none"
                 >
                 </TextInput>
+
                 {/* error-text for email-input */}
-                {email.length && !isEmailValid && (
+                {email.length > 0 && !isEmailValid && (
                     <Text style={styles.errorText}>
                         Please enter a valid email address.
                     </Text>
