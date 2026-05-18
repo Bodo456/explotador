@@ -1,6 +1,14 @@
+import { useState } from 'react';
 import { KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default function Register() {
+
+    {/* password-state */}
+    const [password, setPassword] = useState('');
+
+    {/* password check, has to have a lenght of 5 and at least 1 digit */}
+    const isPasswordValid = password.length >= 5 && /\d/.test(password);
+
     return (
         
         <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
@@ -16,15 +24,18 @@ export default function Register() {
                 </TextInput>
                 <View style={styles.divider}></View>
                 {/* password-part */}
-                <Text style={styles.passwordText}>
-                    Password needs to have a length of at least 5 and contain 1 or more special characters.
-                </Text>
+                {password.length > 0 && !isPasswordValid && (
+                    <Text style={styles.errorText}>
+                        Password has to be at least 5 characters long and needs to contain 1 digit.
+                    </Text> 
+                )}
                 <TextInput style={styles.input} placeholder="password" placeholderTextColor= "#999"
-                    textContentType="password" secureTextEntry={true}>
+                    textContentType="password" secureTextEntry={true} value={password} onChangeText={setPassword}>
                 </TextInput>
                 <TextInput style={styles.input} placeholder="repeat password" placeholderTextColor= "#999"
                     textContentType="password" secureTextEntry={true}>
                 </TextInput>
+
                 <Pressable style={({ pressed }) => [
                       styles.button,
                       pressed && styles.buttonPressed,
@@ -98,10 +109,9 @@ const styles = StyleSheet.create({
     width: '80%',
     marginVertical: 10,
     },
-    passwordText: {
+    errorText: {
         fontSize: 12,
         width: '85%',
-        color: 'gray',
-        textAlign: 'center',
+        color: '#ff6b6b',
     },
 });

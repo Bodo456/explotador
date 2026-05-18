@@ -107,6 +107,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#666',
     width: '80%',
     marginVertical: 10,
-    },
+  },
 
 });
