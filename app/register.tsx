@@ -1,8 +1,11 @@
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default function Register() {
     return (
-        <View style={styles.container}>
+        
+        <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+            { /* register page container */}
+            { /* username-section / email-section */}
             <View style={styles.buttonContainer}>
                 <Text style={styles.buttonTitle}>Create an account</Text>
                 <TextInput style={styles.input} placeholder="username" placeholderTextColor= "#999"
@@ -12,6 +15,10 @@ export default function Register() {
                 >
                 </TextInput>
                 <View style={styles.divider}></View>
+                {/* password-part */}
+                <Text style={styles.passwordText}>
+                    Password needs to have a length of at least 5 and contain 1 or more special characters.
+                </Text>
                 <TextInput style={styles.input} placeholder="password" placeholderTextColor= "#999"
                     textContentType="password" secureTextEntry={true}>
                 </TextInput>
@@ -26,7 +33,7 @@ export default function Register() {
                     <Text style={styles.buttonText}>Register</Text>
                 </Pressable>
             </View>
-        </View>
+        </KeyboardAvoidingView>
     );
 }
 
@@ -90,5 +97,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#666',
     width: '80%',
     marginVertical: 10,
+    },
+    passwordText: {
+        fontSize: 12,
+        width: '85%',
+        color: 'gray',
+        textAlign: 'center',
     },
 });
